@@ -112,6 +112,9 @@ p{margin:0}
 .tips p{font-size:15.5px;color:var(--muted)}
 code.inline{font-family:var(--mono);font-size:.86em;background:var(--accent-soft);border-radius:6px;padding:1px 6px;overflow-wrap:anywhere}
 
+.coffee{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--accent-soft);border-radius:22px;padding:clamp(20px,3vw,28px) clamp(20px,3vw,32px);margin-top:-40px}
+.coffee-copy{display:flex;flex-direction:column;gap:4px;min-width:0;max-width:56ch}
+.coffee-copy p{color:var(--muted);font-size:15.5px}
 .notes{border:1px solid var(--line);border-radius:22px;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:14px}
 .notes ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;color:var(--muted);max-width:72ch}
 
@@ -350,6 +353,11 @@ Week [N] review
       </div>
     </section>
 
+    <aside class="coffee" id="support" aria-labelledby="coffee-title">
+      <div class="coffee-copy"><h3 id="coffee-title">Saved you a subscription?</h3><p>Everything here is free. If it helped, a coffee keeps me building and sharing more.</p></div>
+      <a class="btn primary" href="https://buymeacoffee.com/nylejones9i" target="_blank" rel="noopener">Buy me a coffee</a>
+    </aside>
+
     <section class="sec" id="tips" aria-labelledby="tips-title">
       <div class="sec-head"><h2 id="tips-title">Tips</h2></div>
       <ul class="tips">
@@ -375,6 +383,7 @@ Week [N] review
   <div class="wrap foot">
     <span>Made by <b>@nylejoness</b></span>
     <nav aria-label="Follow @nylejoness">
+      <a href="https://buymeacoffee.com/nylejones9i" target="_blank" rel="noopener">Buy me a coffee</a>
       <a href="https://www.tiktok.com/@nylejoness" target="_blank" rel="noopener">TikTok</a>
       <a href="https://www.instagram.com/nylejoness/" target="_blank" rel="noopener">Instagram</a>
       <a href="https://www.youtube.com/@nylejoness" target="_blank" rel="noopener">YouTube</a>
