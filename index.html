@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AI Running Coach</title>
-<meta name="description" content="Build your own AI running coach with Claude and your Garmin: the Garmin MCP, three copy-ready prompts and a step-by-step setup guide.">
+<meta name="description" content="Build your own AI running coach with Claude or ChatGPT and your Garmin: the Garmin MCP, copy-ready prompts and a step-by-step setup guide for each.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Build your own AI running coach with Claude">
+<meta property="og:title" content="Build your own AI running coach with Claude or ChatGPT">
 <meta property="og:description" content="The Garmin MCP, three copy-ready prompts and a step-by-step setup guide. Made by @nylejoness.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Build your own AI running coach with Claude">
+<meta name="twitter:title" content="Build your own AI running coach with Claude or ChatGPT">
 <meta name="twitter:description" content="The Garmin MCP, three copy-ready prompts and a step-by-step setup guide.">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -112,6 +112,12 @@ p{margin:0}
 .tips p{font-size:15.5px;color:var(--muted)}
 code.inline{font-family:var(--mono);font-size:.86em;background:var(--accent-soft);border-radius:6px;padding:1px 6px;overflow-wrap:anywhere}
 
+.plat{position:sticky;top:env(safe-area-inset-top,0px);z-index:15;display:flex;justify-content:center;padding-block:10px;margin-block:-40px;background:var(--bg)}
+.plat-inner{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:4px 4px 4px 16px;background:var(--surface);max-width:100%}
+.plat-inner span{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:6px;white-space:nowrap}
+.plat-btn{font-family:var(--sans);font-weight:600;font-size:15px;border:0;border-radius:999px;padding:9px 18px;background:transparent;color:var(--ink);cursor:pointer}
+.plat-btn[aria-pressed=true]{background:var(--accent);color:var(--accent-ink)}
+@media (max-width:400px){.plat-inner span{display:none}.plat-inner{padding-left:4px}}
 .coffee{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--accent-soft);border-radius:22px;padding:clamp(20px,3vw,28px) clamp(20px,3vw,32px);margin-top:-40px}
 .coffee-copy{display:flex;flex-direction:column;gap:4px;min-width:0;max-width:56ch}
 .coffee-copy p{color:var(--muted);font-size:15.5px}
@@ -146,13 +152,13 @@ footer{margin-top:clamp(64px,9vw,112px);border-top:1px solid var(--line)}
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">Claude and Garmin</p>
-        <h1 id="hero-title">Build your own AI running coach with Claude</h1>
-        <p class="lede">A personalised training plan that lands on your Garmin as structured workouts, then reviews your week every Monday and adjusts what comes next. Here is the MCP, the three prompts and the setup guide.</p>
+        <p class="eyebrow">Claude or ChatGPT, plus Garmin</p>
+        <h1 id="hero-title">Build your own AI running coach</h1>
+        <p class="lede">A personalised training plan that lands on your Garmin as structured workouts, then reviews your week every Monday and adjusts what comes next. Works with Claude or ChatGPT. Here is the MCP, the prompts and the setup guide for each.</p>
         <div class="btns">
           <a class="btn primary" href="https://missingmcp.com/garmin" target="_blank" rel="noopener">Get the Garmin MCP
             <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11L11 5M6 5h5v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <a class="btn ghost" href="#prompts">See the prompts</a>
+          <a class="btn ghost" href="#prompts" data-jump="prompts">See the prompts</a>
         </div>
       </div>
       <figure class="cal" aria-label="Example week on a Garmin calendar">
@@ -168,8 +174,12 @@ footer{margin-top:clamp(64px,9vw,112px);border-top:1px solid var(--line)}
       </figure>
     </section>
 
-    <section class="sec" id="need" aria-labelledby="need-title">
-      <div class="sec-head"><h2 id="need-title">What you need</h2></div>
+    <nav class="plat" aria-label="Choose your AI">
+      <div class="plat-inner"><span>Choose your AI</span><button class="plat-btn" type="button" data-plat="claude" aria-pressed="true">Claude</button><button class="plat-btn" type="button" data-plat="chatgpt" aria-pressed="false">ChatGPT</button></div>
+    </nav>
+
+    <section class="sec" id="need" data-platform="claude" aria-labelledby="need-title">
+      <div class="sec-head"><h2 id="need-title">What you need with Claude</h2></div>
       <div class="grid4">
         <div class="item"><span class="tag">Watch</span><h3>A Garmin watch and Garmin Connect</h3><p>Any watch that runs structured workouts. Metrics like HRV and sleep depend on your model.</p></div>
         <div class="item"><span class="tag">Claude</span><h3>Connectors and scheduled tasks</h3><p>Check which Claude plans include them at <a href="https://support.claude.com" target="_blank" rel="noopener">support.claude.com</a>.</p></div>
@@ -178,18 +188,29 @@ footer{margin-top:clamp(64px,9vw,112px);border-top:1px solid var(--line)}
       </div>
     </section>
 
+
+    <section class="sec" id="need-gpt" data-platform="chatgpt" hidden aria-labelledby="need-gpt-title">
+      <div class="sec-head"><h2 id="need-gpt-title">What you need with ChatGPT</h2></div>
+      <div class="grid4">
+        <div class="item"><span class="tag">Watch</span><h3>A Garmin watch and Garmin Connect</h3><p>Any watch that runs structured workouts. Metrics like HRV and sleep depend on your model.</p></div>
+        <div class="item"><span class="tag">ChatGPT</span><h3>Developer mode</h3><p>Custom apps need a paid plan and are set up on ChatGPT on the web. Check current plans at <a href="https://help.openai.com" target="_blank" rel="noopener">help.openai.com</a>.</p></div>
+        <div class="item"><span class="tag">MCP</span><h3>The Garmin MCP</h3><p>Lets ChatGPT read your Garmin data and add workouts to your calendar. <a href="https://missingmcp.com/garmin/chatgpt" target="_blank" rel="noopener">ChatGPT setup guide</a></p></div>
+        <div class="item"><span class="tag">ChatGPT</span><h3>Scheduled tasks</h3><p>Runs your review every Monday. Check it's available on your plan.</p></div>
+      </div>
+    </section>
+
     <section class="sec" id="how" aria-labelledby="how-title">
       <div class="sec-head"><h2 id="how-title">How it works</h2></div>
       <ol class="flow">
-        <li><span class="n">01</span><h3>Interview</h3><p>Claude asks about your goal, PBs, availability and the sessions you like or avoid.</p></li>
+        <li><span class="n">01</span><h3>Interview</h3><p>Your AI asks about your goal, PBs, availability and the sessions you like or avoid.</p></li>
         <li><span class="n">02</span><h3>Plan</h3><p>It reads your Garmin history and builds an 8 to 16 week block with your training zones.</p></li>
         <li><span class="n">03</span><h3>On your watch</h3><p>Each week's sessions land on your Garmin calendar as structured workouts, ready to start.</p></li>
         <li><span class="n">04</span><h3>Weekly review</h3><p>Every Monday it checks your runs, paces, recovery and effort, then rewrites the next week.</p></li>
       </ol>
     </section>
 
-    <section class="sec" id="guide" aria-labelledby="guide-title">
-      <div class="sec-head"><h2 id="guide-title">Setup guide</h2><p class="muted">About 20 minutes, most of it answering the interview.</p></div>
+    <section class="sec" id="guide" data-platform="claude" aria-labelledby="guide-title">
+      <div class="sec-head"><h2 id="guide-title">Claude setup guide</h2><p class="muted">About 20 minutes, most of it answering the interview.</p></div>
       <ol class="steps">
         <li><div class="body"><h3>Add the Garmin MCP to Claude</h3><p>Follow the setup instructions on <a href="https://missingmcp.com/garmin" target="_blank" rel="noopener">missingmcp.com/garmin</a> to connect it to Claude and sign in to your Garmin account.</p></div></li>
         <li><div class="body"><h3>Connect Google Drive</h3><p>Turn on the Google Drive connector in Claude. Your plan, weekly log and dashboard data are saved there between sessions.</p></div></li>
@@ -201,8 +222,22 @@ footer{margin-top:clamp(64px,9vw,112px);border-top:1px solid var(--line)}
       </ol>
     </section>
 
-    <section class="sec" id="prompts" aria-labelledby="prompts-title">
-      <div class="sec-head"><h2 id="prompts-title">The prompts</h2><p class="muted">Copy each one exactly as it is. They interview you for your details, so there is nothing to fill in.</p></div>
+
+    <section class="sec" id="guide-gpt" data-platform="chatgpt" hidden aria-labelledby="guide-gpt-title">
+      <div class="sec-head"><h2 id="guide-gpt-title">ChatGPT setup guide</h2><p class="muted">About 20 minutes. Everything runs in one chat, which becomes your coach's memory.</p></div>
+      <ol class="steps">
+        <li><div class="body"><h3>Add the Garmin MCP to ChatGPT</h3><p>On ChatGPT on the web, follow the <a href="https://missingmcp.com/garmin/chatgpt" target="_blank" rel="noopener">ChatGPT setup guide</a>: turn on Developer mode, create an app with the Garmin MCP server address, then sign in to your Garmin account.</p></div></li>
+        <li><div class="body"><h3>Run Prompt 1 in a new chat</h3><p>Start a new chat, turn on the Garmin app for it, paste Prompt 1 and answer the interview. When ChatGPT asks to add workouts to your calendar, approve them.</p></div></li>
+        <li><div class="body"><h3>Keep this chat</h3><p>Prompt 1 ends with your Coach Brief: your zones, plan and rules. Your weekly reviews read it from this chat, so run everything else here too.</p></div></li>
+        <li><div class="body"><h3>Check your watch</h3><p>Open Garmin Connect, find week 1 on your calendar, then sync your watch.</p></div></li>
+        <li><div class="body"><h3>Schedule Prompt 2 in the same chat</h3><p>Paste Prompt 2 into the same chat and ask ChatGPT to run it every Monday morning. A task scheduled inside a chat reports back to that chat, so it can see your Coach Brief.</p></div></li>
+        <li><div class="body"><h3>Approve each new week</h3><p>If ChatGPT needs your OK before adding workouts, open the chat on Monday and approve next week in one message.</p></div></li>
+        <li><div class="body"><h3>Build your dashboard <span class="opt">Optional</span></h3><p>Paste Prompt 3 into the same chat for a dashboard in canvas. Say "refresh my dashboard" whenever you want it updated.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="sec" id="prompts" data-platform="claude" aria-labelledby="prompts-title">
+      <div class="sec-head"><h2 id="prompts-title">The Claude prompts</h2><p class="muted">Copy each one exactly as it is. They interview you for your details, so there is nothing to fill in.</p></div>
       <div class="prompts">
         <article class="prompt" id="prompt-1">
           <div class="prompt-head">
@@ -353,6 +388,150 @@ Week [N] review
       </div>
     </section>
 
+    <section class="sec" id="prompts-gpt" data-platform="chatgpt" hidden aria-labelledby="prompts-gpt-title">
+      <div class="sec-head"><h2 id="prompts-gpt-title">The ChatGPT prompts</h2><p class="muted">Run all three in the same chat. They interview you for your details, so there is nothing to fill in.</p></div>
+      <div class="prompts">
+        <article class="prompt" id="prompt-gpt-1">
+          <div class="prompt-head">
+            <div class="prompt-title"><span class="tag">Prompt 1</span><h3>Setup interview and plan</h3><p>Paste into a new chat with the Garmin app on. Builds your plan, sends week 1 to your watch and writes your Coach Brief.</p></div>
+            <div class="prompt-actions"><button class="pbtn copy" type="button" data-target="g1">Copy prompt</button><button class="pbtn expand" type="button" data-target="g1" aria-expanded="false">Expand</button></div>
+          </div>
+          <div class="code"><pre id="g1" tabindex="0">You are an elite endurance running coach and sports scientist who builds adaptive, personalised training plans. You can use my Garmin app, connected through developer mode, to read my Garmin data and add workouts to my Garmin calendar.
+
+&lt;instructions&gt;
+1. Interview me first. Ask these in one batch, then wait for my answers:
+   - My goal: a race (name, distance, date, target time) or a distance I want to get faster at.
+   - My current level and how long I have been running consistently.
+   - My PBs for 5K, 10K, half marathon and marathon, and which are recent and genuine.
+   - How many runs a week I can commit to, which days, and which day suits my long run.
+   - Session types I enjoy or want to avoid (for example hills, track, parkrun, treadmill).
+   - Strength and mobility: how many sessions a week, and gym or home.
+   - Any injuries, niggles or health conditions the plan should work around.
+   - My Garmin watch model, and whether I want pace or heart rate targets.
+2. Pull my Garmin data: the last 16 weeks of runs with splits, personal records, race predictions, VO2 max trend, heart rate zones, lactate threshold, HRV, sleep, resting heart rate and body battery. Many watches do not record every metric. If a tool returns nothing, note it and work from what exists. Never invent data. Flag any PB that looks like a GPS error or disagrees with my answers.
+3. Set my training zones from my PBs, cross-checked against recent Garmin efforts and race predictions, weighting recent data over older PBs. Give a range for easy, steady, threshold, 10K pace, 5K pace, intervals and strides.
+4. Build a block of 8 to 16 weeks that fits my goal and timeline, starting next Monday unless I say otherwise. Phase it (base or transition, build, peak, taper) with a deload every 3 to 4 weeks and time trials where useful. State realistic target times.
+5. Build week 1 as structured Garmin workouts and schedule them on the correct dates. If ChatGPT needs my confirmation to add workouts, list the whole week first so I can approve it in one go.
+6. Write my Coach Brief using the format below. My weekly reviews will run as a scheduled task in this same chat and will use it as their memory, so make it complete.
+7. Reply using the output format.
+&lt;/instructions&gt;
+
+&lt;coaching_rules&gt;
+- Maximum 2 quality sessions per week. Any extra runs are easy.
+- Around 80% of weekly running time at easy effort.
+- Weekly volume rises no more than 10% week on week. Compare deload and test weeks against the last full training week.
+- Keep the long run to roughly 30 to 35% of weekly volume, except in marathon plans.
+- Any run beyond my core commitment is optional: prefix its name with "Optional" so I can skip it without penalty.
+- Strength: running specific (single leg work, posterior chain, calves, core). Never schedule heavy lower body work within 24 hours before a quality session or long run. Halve strength volume in deload and taper weeks.
+- Never prescribe session types I said I want to avoid.
+- If my activity notes or feel ratings suggest pain or injury, reduce load and recommend a physio. No diagnoses.
+&lt;/coaching_rules&gt;
+
+&lt;garmin_workout_rules&gt;
+- Every run is a structured workout: warm-up, main set, cool-down, with a target on every work step. Use repeat steps for reps. Recovery jogs have no target.
+- Session types: Easy Run, Tempo, Intervals, Progressive Run, Long Run, Taper Intervals, parkrun, Strength.
+- Name workouts "RC W[week] [Day] [Type] [summary]", for example "RC W3 Tue Intervals 6x800m". The RC prefix keeps them separate from any other workouts on my calendar.
+- Check my Garmin calendar for that week before scheduling to avoid duplicates.
+&lt;/garmin_workout_rules&gt;
+
+&lt;coach_brief_format&gt;
+Title it "COACH BRIEF v1". Include: my interview answers, PBs, data gaps, training zones, block start and end dates, one line per week (phase, target volume, key sessions), target times, and the coaching rules and Garmin workout rules above, verbatim.
+&lt;/coach_brief_format&gt;
+
+&lt;output_format&gt;
+1. Training zones table.
+2. Block overview, one line per week.
+3. Week 1 sessions table: day, date, session, distance, targets.
+4. Target times and data gaps, in two lines.
+5. The Coach Brief in a single code block.
+&lt;/output_format&gt;
+
+&lt;constraints&gt;
+- UK English spelling and grammar
+- Concise and direct, no preamble or filler
+- No em dashes or en dashes
+&lt;/constraints&gt;</pre></div>
+        </article>
+        <article class="prompt" id="prompt-gpt-2">
+          <div class="prompt-head">
+            <div class="prompt-title"><span class="tag">Prompt 2</span><h3>Weekly coach</h3><p>Paste into the same chat and ask ChatGPT to schedule it every Monday morning.</p></div>
+            <div class="prompt-actions"><button class="pbtn copy" type="button" data-target="g2">Copy prompt</button><button class="pbtn expand" type="button" data-target="g2" aria-expanded="false">Expand</button></div>
+          </div>
+          <div class="code"><pre id="g2" tabindex="0">You are my running coach running my weekly plan review. This runs as a scheduled task in the chat where my plan was built. The most recent COACH BRIEF in this chat, plus any updates from later weekly reviews, is the source of truth. Never invent data.
+
+&lt;instructions&gt;
+1. Check today's date and work out which plan week has just finished (Monday to Sunday) and which is next. If the block has not started yet, confirm week 1 is on my Garmin calendar and stop. If the block is finished, schedule nothing: write a block summary and stop.
+2. Pull from Garmin for the week just finished: all activities (runs and strength) with splits and lap paces, heart rate, my perceived effort, feel ratings and notes, the workouts that were planned, and daily HRV, sleep, resting heart rate and body battery. Also pull the latest VO2 max and race predictions.
+3. Review the week. Match each planned session to what I did: first by the workout name in the activity title ("RC W2 Tue Tempo 3x2km" done on Monday is still the Tuesday tempo), then a plainly named activity of the same kind on the same day, then one day either side. A moved workout can drop off the calendar, so check my saved workouts for the full week's plan. A session done on another day counts as completed. Calculate compliance, compare each quality session's rep paces to target, check whether easy runs were actually easy, and compare recovery metrics to my 4 week average.
+4. Apply the adaptation rules below, then the coaching rules in the Coach Brief, to decide next week.
+5. Build next week as structured Garmin workouts following the rules in the Coach Brief, check the calendar for duplicates and schedule them. If adding workouts needs my confirmation, list the full week first and ask me to approve it in one message, then schedule everything once I do.
+6. If my zones or plan changed, end with an updated Coach Brief in a single code block, with the version number increased, so next week's review uses it.
+7. Write the summary using the output format.
+&lt;/instructions&gt;
+
+&lt;adaptation_rules&gt;
+- Missed sessions are not made up. Move a missed quality session only if it still leaves 48 hours before the next quality session or long run; otherwise drop it.
+- If the last 2 quality sessions hit target with even reps and controlled effort, tighten that zone by 2 to 3 seconds per km.
+- If a quality session missed target by more than 5 seconds per km or the reps faded badly, hold or ease that zone by 3 to 5 seconds per km.
+- After any time trial or race, recalculate all zones from the result.
+- Recovery flags: HRV below baseline for 3 or more days, resting heart rate 5 or more bpm above my 4 week average, average sleep under 6.5 hours, or a quality session rated near maximum effort. Skip any flag my watch has no data for. One flag: convert next week's quality session to steady running or cut the reps by a third. Two or more flags: make next week lighter, at around 70% volume.
+- If most easy runs were 10 or more seconds per km faster than my easy range, keep the plan but call it out.
+- If notes or feel ratings suggest pain or injury, reduce load, flag it at the top of the summary and recommend a physio.
+- Compliance under 60% for 2 weeks running: repeat the current week's structure rather than progressing.
+&lt;/adaptation_rules&gt;
+
+&lt;output_format&gt;
+Week [N] review
+1. Three to five lines: planned vs done, compliance %, key session verdict, recovery trend.
+2. Changes made and why, one line each. "No changes" if none.
+3. Next week sessions table: day, date, session, distance, targets.
+4. Headline stat of the week, one line.
+&lt;/output_format&gt;
+
+&lt;constraints&gt;
+- UK English spelling and grammar
+- Concise and direct, no preamble or filler
+- No em dashes or en dashes
+&lt;/constraints&gt;</pre></div>
+        </article>
+        <article class="prompt" id="prompt-gpt-3">
+          <div class="prompt-head">
+            <div class="prompt-title"><span class="tag">Prompt 3 <span class="opt" style="margin-left:4px">Optional</span></span><h3>Dashboard</h3><p>Builds a snapshot dashboard in canvas. Ask it to refresh whenever you like.</p></div>
+            <div class="prompt-actions"><button class="pbtn copy" type="button" data-target="g3">Copy prompt</button><button class="pbtn expand" type="button" data-target="g3" aria-expanded="false">Expand</button></div>
+          </div>
+          <div class="code"><pre id="g3" tabindex="0">You are a front-end designer and data visualisation specialist. Use my Garmin app and the latest COACH BRIEF in this chat to build a running dashboard in canvas as a single HTML page.
+
+&lt;data&gt;
+- Pull now from Garmin: my activities (runs and strength) from six weeks before my block started to today, the workouts scheduled for this block, race predictions and the VO2 max trend.
+- Take my goal, block dates, weekly targets, target times, PBs and training zones from the Coach Brief.
+- This is a snapshot, so show the date and time it was built at the top. When I say "refresh my dashboard", pull the data again and rebuild it.
+&lt;/data&gt;
+
+&lt;sections&gt;
+1. Header: my goal, "Week X of N", the current phase and one headline stat.
+2. Tiles: race predictions against my targets and PBs, this week's km against plan, and VO2 max with its trend.
+3. This week: a card per planned session with a type label and a tick once done, showing what I actually ran. Match activities to sessions by workout name first ("RC W[n] [Day]"), then the same day, then one day either side.
+4. Weekly volume: km per week as bars, with the plan target marked on each block week.
+5. Pace per run, with my easy zone shaded, plus a VO2 max trend chart.
+6. The block: every week's phase, key sessions, planned km and actual km, with the current week highlighted.
+7. Workout history: every activity in a sortable, searchable table (date, name, type, km, time, pace, average and max HR, climb, calories), with a runs, strength or all filter and totals for that filter.
+8. My training zones and PBs.
+&lt;/sections&gt;
+
+&lt;design&gt;
+- Clean and readable at phone width, with light and dark mode support.
+- Every number comes from the data. Never invent values.
+&lt;/design&gt;
+
+&lt;constraints&gt;
+- UK English spelling and grammar
+- Concise and direct, no preamble or filler
+- No em dashes or en dashes
+&lt;/constraints&gt;</pre></div>
+        </article>
+      </div>
+    </section>
+
     <aside class="coffee" id="support" aria-labelledby="coffee-title">
       <div class="coffee-copy"><h3 id="coffee-title">Saved you a subscription?</h3><p>Everything here is free. If it helped, a coffee keeps me building and sharing more.</p></div>
       <a class="btn primary" href="https://buymeacoffee.com/nylejones9i" target="_blank" rel="noopener">Buy me a coffee</a>
@@ -372,7 +551,7 @@ Week [N] review
       <h2 id="gtk-title" style="font-size:24px">Good to know</h2>
       <ul>
         <li>missingmcp.com is a third-party tool I found and I'm not affiliated with it. Connecting it gives it access to your Garmin data, so read its privacy policy first. You can disconnect it at any time.</li>
-        <li>This site isn't affiliated with Garmin, Anthropic or Runna.</li>
+        <li>This site isn't affiliated with Garmin, Anthropic, OpenAI or Runna.</li>
         <li>The plans are general guidance, not medical advice. Check with a professional before starting if you have a health condition, and stop and get help if something hurts.</li>
       </ul>
     </section>
@@ -431,6 +610,27 @@ Week [N] review
       btn.setAttribute('aria-expanded', String(open));
     });
   });
+  var platEls = document.querySelectorAll('[data-platform]'), platBtns = document.querySelectorAll('.plat-btn');
+  var setPlat = function (p, updateHash) {
+    platEls.forEach(function (el) { el.hidden = el.dataset.platform !== p; });
+    platBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.plat === p)); });
+    if (updateHash) { try { history.replaceState(null, '', '#' + p); } catch (e) {} }
+  };
+  platBtns.forEach(function (b) { b.addEventListener('click', function () { setPlat(b.dataset.plat, true); }); });
+  document.querySelectorAll('[data-jump]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var gpt = document.querySelector('.plat-btn[data-plat="chatgpt"]').getAttribute('aria-pressed') === 'true';
+      var t = document.getElementById(a.dataset.jump + (gpt ? '-gpt' : ''));
+      if (t) { e.preventDefault(); t.scrollIntoView(); }
+    });
+  });
+  (function () {
+    var h = location.hash.slice(1);
+    if (!h) return;
+    var t = document.getElementById(h);
+    var inGpt = h === 'chatgpt' || (t && t.closest('[data-platform="chatgpt"]'));
+    if (inGpt) { setPlat('chatgpt', false); if (t && h !== 'chatgpt') requestAnimationFrame(function () { t.scrollIntoView(); }); }
+  })();
   var bb = document.getElementById('badge-btn'), bm = document.getElementById('badge-menu');
   var set = function (open) { bm.hidden = !open; bb.setAttribute('aria-expanded', String(open)); };
   bb.addEventListener('click', function (e) { e.stopPropagation(); set(bm.hidden); });
